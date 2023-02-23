@@ -89,16 +89,33 @@
             <br>
             <h3>Goals</h3>
             <p>
-              When an object was in front of the sensor, it should accurately report the distance on the Serial Monitor, turn the LED on, and start the motor. If the object is removed, the motor and LED should turn off.
+              When an object is in front of the sensor, it should accurately report the distance on the Serial Monitor, turn the LED on, and start the motor. If the object is removed, the motor and LED should turn off.
             </p>
             <h3>Using the Arduino</h3>
             <p>
-              I built to the specifications and adapted <a href="https://www.youtube.com/watch?v=HynLoCtUVtU">this tutorial</a> this tutorial. I learned that the serial monitor should be set to <code> Serial.begin(9600)</code> in order to print back to the Serial Monitor. I also learned that this formula would give me the distance <code>duration*0.034/2</code>. 
+              I built to the specifications and adapted <a href="https://www.youtube.com/watch?v=HynLoCtUVtU">this tutorial</a>. I learned that the serial monitor should be set to <code> Serial.begin(9600)</code> in order to print back to the Serial Monitor. I also learned that this formula would give me the distance <code>duration*0.034/2</code>. 
             </p>
             <p>
-             My set up looked good, despite significant debugging, the motor would not turn on. So I tried the set up in TinkerCAD and it ran with no problem. 
+              The motor would not turn on despite significant debugging. So I tried the set up in TinkerCAD and it ran with no problem. Here is the diagram and code.  
             </p>
+            <img src="assets/img/portfolio/arduino-programming/diagram1.png" alt="arduino set up with only led working, not motor">
             <br>
+            <br>
+            <img src="assets/img/portfolio/arduino-programming/code.png" alt="code for arduino">
+            <p>
+              Time to debug. I tested to make sure the motor was working using a separate power supply. I then replaced the motor with a multimeter. It showed 5V, the amount needed to power the motor. 
+            </p>
+            <img src="assets/img/portfolio/arduino-programming/multimeter.jpg" alt="multimeter in place of the motor">
+            <p>
+              Finally, I found the issue. It turns out that digital pins did not have enough current to drive the motor so I needed a transistor. Here is the new diagram:
+            </p>
+            <img src="assets/img/portfolio/arduino-programming/diagram.png" alt="diagram of an arduino set up with the transistor added">
+            <br>
+            <br>
+            <img src="assets/img/portfolio/arduino-programming/demo.gif" alt="gif of an arduino set up with the transistor added">
+            <p>
+              It worked! A good reminder that voltage and current are not the same thing. Time to report this bug to TinkerCAD...
+            </p>
             <br>
             <br>
           </div>
