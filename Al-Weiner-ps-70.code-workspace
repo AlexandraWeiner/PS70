@@ -3,6 +3,10 @@
 		{
 			"name": "Al-Weiner-ps-70",
 			"path": "."
+		},
+		{
+			"name": "ps70-group",
+			"path": "../../PlatformIO/Projects/ps70-group"
 		}
 	],
 	"settings": {
