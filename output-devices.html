@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Project Details</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,500,500i,600,600i,700,700i,900,900i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Folio - v4.10.0
+  * Template URL: https://bootstrapmade.com/folio-bootstrap-portfolio-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Project Details</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <!-- <li><a href="portfolio.html">Portfolio</a></li> -->
+            <li>Project Details</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- Breadcrumbs Section -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container"> 
+
+          <div class="col-lg-12">
+            <!-- <div class="portfolio-info">
+              <h3>Project Information</h3>
+              <ul>
+                <li><strong>Tags</strong>: tag 1, tag 2, tag 5</li>
+                <li><strong>Project date</strong>: 2023 Feb 02 </li>              </ul>
+            </div> -->
+
+            <div class="portfolio-description">
+              <h1>Project Background</h1>
+              <p>
+                Week 6 was about capacitive sensors. I looked at 3D positioning to prepare for my final project and also created a water level sensor.  
+              </p>
+            <h1>3D Positioning Process</h1>
+            <p>
+             <h3>Materials</h3> 
+             <br>
+             <br>
+              <ul>
+                <li>Arduino UNO</li>
+                <li>MPU6050 Accelerometer and Gyroscope sensor</li>
+                <li>Breadboard</li>
+                <li>Wires</li>
+                <li>Soldering tools</li>
+              </ul>
+            </p>
+            <br>
+            <br>
+            <h3>Testing the gyroscope and accelerometer</h3>
+            <p>
+              I wired the MPU6050 to the Arduino UNO. 
+            </p>
+            <img src="assets/img/portfolio/input devices/inputdiagram.png" alt="diagram uno and mpu6050">
+            <p>
+              And used the code from <a href=" https://howtomechatronics.com/tutorials/arduino/arduino-and-mpu6050-accelerometer-and-gyroscope-tutorial/">this tutorial</a>
+              to read from the sensor.
+            </p>
+            <img src="assets/img/portfolio/input devices/ezgif.com-video-to-gif (7).gif" alt="gif moving the mpu6050">
+            <img src="assets/img/portfolio/input devices/ezgif.com-video-to-gif (8).gif" alt="gif moving the mpu6050">
+            <img src="assets/img/portfolio/input devices/ezgif.com-video-to-gif (9).gif" alt="gif moving the mpu6050">
+             <p>
+              I then tested different movements. For example, when laying flat on a table the
+              z-axis of the accelerometer should equal the acceleration of gravity (~9.8 m/s^2). As
+              we can see below, it is fairly close, but not exact. This would need to be fixed for more precise
+              applications such as my potential final project. 
+              </p>
+              <img src="assets/img/portfolio/input devices/accelz.png" alt="graph">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h1>Water level sensor process</h1>
+            <br>
+            <br>
+            <h3>Materials</h3>
+            <br>
+            <br>
+            <ul>
+              <li>Copper tape</li>
+              <li>Plastic cup with measuring marks</li>
+              <li>Breadboard</li>
+              <li>Alligator clips</li>
+              <li>Wires</li>
+              <li>2x10MOhm resistor</li>
+            </ul>
+            <p>
+              I tried to build the cup sensor as outlined in the class instructions page.
+            </p>
+            <img src="assets/img/portfolio/input devices/cup1.jpg" alt="capacitive sensor cup">
+            <p>
+              I used <a href="https://www.tinkercad.com/things/jxwiFJQbHLA-magnificent-elzing-bombul/editel?sharecode=AyomfXdsAnZ-xy1cm0o4OCMm6P6AFc0qZebtLURTGvs">this code</a>, but was getting a ton of variation on the y axis. 
+            </p>
+            <img src="assets/img/portfolio/input devices/graph1.png" alt="graph">
+            <p>
+              I tried this set up, which removed the board and directly connected to the cup. Excuse the poor photography, the copper was better affixed when I actually tested the water level.
+            </p>
+            <img src="assets/img/portfolio/input devices/cup2.jpg" alt="capacitive sensor cup try 2">
+            <p>
+              There was a relationship between the water level and the reading. To get accurate calibration next time, I would solder the set up, shorten the wires, and try both methods of
+              capacitive sensing. 
+            </p>
+            <br>
+            <br>
+            <br>
+            <br>
+          </div>
+
+   <!-- End Portfolio Details Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <div id="footer" class="text-center">
+    <div class="container">
+  
+
+    </div>
+  </div><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

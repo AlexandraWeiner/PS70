@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <!-- prism for code styling  -->
+  <link href="themes/prism-ghcolors.css" rel="stylesheet" />
+
+  <title>Project Details</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,500,500i,600,600i,700,700i,900,900i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Folio - v4.10.0
+  * Template URL: https://bootstrapmade.com/folio-bootstrap-portfolio-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+  <!-- prism for code styling  -->
+  <script src="prism.js"></script>
+
+  <!-- ======= Header ======= -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Project Details</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <!-- <li><a href="portfolio.html">Portfolio</a></li> -->
+            <li>Project Details</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- Breadcrumbs Section -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container"> 
+
+          <div class="col-lg-12">
+            <!-- <div class="portfolio-info">
+              <h3>Project Information</h3>
+              <ul>
+                <li><strong>Tags</strong>: tag 1, tag 2, tag 5</li>
+                <li><strong>Project date</strong>: 2023 Feb 02 </li>              </ul>
+            </div> -->
+
+            <div class="portfolio-description">
+              <h1>Project Background</h1>
+              <p>
+                My final project is a multiple elements of an installation to raise awareness and reduce harm from PFAS, also known as Forever Chemicals. Since I wanted to both improve my coding skills and practice 
+                the digital fabrication techniques I learned in class, I opted for an emphasis on coding the receipt printer and website along with a few other techniques for building the receipt container and organ.
+              </p>
+            <h1>Video</h1>
+            <br>
+            <br>
+               <h1>Process</h1>
+               <p>
+                I built upon the molding and casting week's project so I will not repeat that process here. Reference back to <a href="https://alexandraweiner.github.io/PS70/milling-molding-casting.html">week 8</a> for the organ component of the project with some additonal learnings!
+               </p>
+               <h3>Materials</h3>
+               <p>
+                 Electronics and Software
+                 <ul>
+                   <li>ESP32-Mini-1</li>
+                   <li>Arduino UNO</li>
+                   <li>CSN-a2 micro panel printer x2</li>
+                   <li>Breadboard x2</li>
+                   <li>5V charger x2</li>
+                   <li>Electrical wires</li>
+                   <li>Firebase</li>
+                   <li>VS Code</li>
+                 </ul>
+               </p>
+               <p>
+                 Box 
+                 <ul>
+                   <li>1/4 inch white acrylic</li>
+                   <li>Acrylic glue</li>
+                   <li>Corner clamps x2 </li>
+                   <li>Trigger clamps x2</li>
+                   <li>Laser cutter</li>
+                   <li>Vinyl cuttter</li>
+                   <li>Red vinyl 8x3 inch strip</li>
+                   <li>Small magnet set x4</li>
+                 </ul>
+               </p>
+               <h3> Configuring the printer</h3>
+               <p>
+                For this component of the installation, 
+                a printer creates a receipt based on a survey completed by each participant. 
+                The receipt prints the results of their survey.
+                I selected the esp32-mini-1 because of the wifi capability and steered clear of the esp32-s2, 
+                which i used for previous projects, because it tended to be unreliable.
+               </p>
+               <p>
+                I followed <a href="https://learn.adafruit.com/mini-thermal-receipt-printer/microcontroller">this tutorial</a> to test a sample print by 
+                pressing the printer button while I gave it power - check complete, the printer works. 
+               </p>
+               <p>
+                Next, I wanted to test the connection between the printer and the esp32-mini-1, 
+                but the adafruit printer library was only working with an Arduino UNO so I changed to the
+                <a href="https://github.com/BinaryWorlds/ThermalPrinter/blob/master/examples/first_view_esp32/first_view_esp32.ino">Thermal Printer library</a> 
+                and used the sample code for the esp-32 with some edits below. There was not much documentation on these changes, so it took quite a bit of testing 
+                to finally make it work.                
+               </p>
+               <h3>TODO add the electronics images</h3>
+
+               <button type="button" class="collapsible">code</button>
+                <div class="content">
+                  <p>
+               <pre>
+               <code class="language-c">
+                // made by BinaryWorlds
+                // Not for commercial use, in other case by free to use it.
+                // Just copy this text and link to oryginal repository: https://github.com/BinaryWorlds/ThermalPrinter
+
+                // I am not responsible for errors in the library. I deliver it "as it is".
+                // I will be grateful for all suggestions.
+
+                // Tested on firmware 2.69 and JP-QR701
+                // Some features may not work on the older firmware.
+
+                #include <Arduino.h>
+                #include <HardwareSerial.h>  // if error you can also use SoftwareSerial, check first_view_arduino
+
+                #include "TPrinter.h"
+
+                // You need to use max3485(for 3V3 logic lvl) or similar, if you have printer with rs232.
+                // If you use esp32 or other MCU with 3v3 logic level you can try with logic level converter.
+
+                // Check which pin pairs are responsible for communication on your board!
+                const byte rxPin = 10;
+                const byte txPin = 9;
+                const int printerBaudrate = 19200;  // or 19200 usually
+
+                const byte dtrPin = 4;  // if used
+
+                HardwareSerial mySerial(1);
+                Tprinter myPrinter(&mySerial, printerBaudrate);
+                // you can assign here other stream like Serial1, Serial2, Serial3 etc
+
+                void setup() {
+                  micros();
+                  Serial.begin(9600);                                         // monitor
+                  mySerial.begin(printerBaudrate, SERIAL_8N1, rxPin, txPin);  // must be 8N1 mode
+                  myPrinter.begin();                                          // you can edit what be happen in Tprinter.cpp, like delay time(2s)
+                  myPrinter.enableDtr(dtrPin, LOW);                           // pinNR, busyState;
+                  // my printer is busy when DTR is LOW,
+                  // there is a high probability that you should change it to HIGH;
+                  // if wrong - print will no start
+
+                  // if you dont enable checking dtr, you should call this:
+                  // myPrinter.autoCalculate();
+
+                  // or you can set it manually using this:
+                  // myPrinter.autoCalculate(0); // turn off
+                  // myPrinter.setTimes(30000, 3000); // oneDotHeight_printTime, oneDotHeight_feedTime in micros
+                  // last is worst option
+
+
+                  myPrinter.println("charset:");
+                  myPrinter.printCharset();
+
+                  myPrinter.println("codepage:");
+                  myPrinter.printCodepage();
+
+                  myPrinter.justify('C');
+                  myPrinter.println("center");
+                  myPrinter.justify('R');
+                  myPrinter.println("right");
+                  myPrinter.justify('L');
+                  myPrinter.println("left");
+
+                  uint8_t list[] = {5, 10, 15, 20, 25};
+                  myPrinter.setTabs(list, 5);
+                  myPrinter.print("1");
+                  myPrinter.tab();
+                  myPrinter.print("2");
+                  myPrinter.tab();
+                  myPrinter.print("3");
+                  myPrinter.tab();
+                  myPrinter.print("4");
+                  myPrinter.println();
+
+                  myPrinter.setMode(FONT_B, DOUBLE_WIDTH, DOUBLE_HEIGHT);
+                  myPrinter.println("FONT_B, bigger");
+                  myPrinter.unsetMode(FONT_B);
+                  myPrinter.println("FONT_A, bigger");
+
+                  myPrinter.feed(6);
+                  myPrinter.identifyChars("ą ę");  // UTF-8
+                }
+
+                void loop() {
+                  myPrinter.printFromSerial();  // open monitor and print something
+                }
+               </code>
+              </pre>
+                </p>
+                </div>
+              <p>
+                I then began work on the firebase following a 
+                <a href="https://randomnerdtutorials.com/esp32-firebase-realtime-database/">tutorial</a> I used in a previous week. 
+                A few reminders: There will be a conflict in the libraries on the operator “+”. There is 
+                probably a more elegant solution, but I chose to delete the “+”. 
+               </p>
+               <p>
+                I updated the web app to contain a simple form so that I might test printing survey results to a form. 
+                I then updated my code to read from the firebase database and print to the printer.
+                </p> 
+                <p>
+                Learning: the printer and the esp32 use two different baud rates, but just using the printer baud rate of 9600 
+                still allows for printing to both the receipt printer and the serial monitor. However, if I wanted to add another 
+                output device with a different baud rate to the same esp32 I imagine I would run into challenges. 
+               </p>
+               <h3>Customizing the receipt prints and website</h3>
+               <p>Now that the printer is working with a generic form and print, it's time to make it relevant to the project.</p>
+               <p>Update the firebase to contain the relevant fields</p>
+               <img src="assets/img/portfolio/final-project/firebase.png" alt="database with money owed, has been printed, and money spent variables">
+               <p>Update or create the following files</p>
+               <p>Update the <a href=" https://github.com/AlexandraWeiner/receipts-project/blob/main/public/script.js">script.js</a>. This will enable firebase communication necessary below and calculations for the survey page.</p>
+              </p>
+               <p>Update the <a href="https://github.com/AlexandraWeiner/receipts-project/blob/main/src/main.cpp">main.cpp</a>. It will now communicate with the firebase to update the values once the below files are in place.</p>
+               <p>Add desired styling to <a href="https://github.com/AlexandraWeiner/receipts-project/blob/main/public/styles.css">styles.css </a></p>
+               <p>Make a survey page. When a user clicks true there should be an increase of 100 on the store credit. If they click false the money owed will increase by 100.
+                When they click the "print receipt" button at the bottom of the page, the firebase database should update with their moneyOwed and storeCredit values shown on the right panel of this screen. The printer should also print a receipt with that user's Money Owed and Store Credit."
+               </p>
+               <img src="assets/img/portfolio/final-project/survey.png" alt="survey page">
+               <p>To make for a more realistic checkout experience, create a <a href="https://github.com/AlexandraWeiner/receipts-project/blob/main/public/test2.html">welcome html page </a>
+                to start the checkout process. This button on this page will take users to the survey.</p>
+              <img src="assets/img/portfolio/final-project/welcome.png" alt="welcome page">
+              <p>Once the code is working, host the website on github pages. One challenge with platform io is that the index page is inside of the public folder, which sometimes prevents hosting on github pages. I made a <a href="https://github.com/AlexandraWeiner/receipts-project/blob/main/index.html">index.html file at the main folder </a> and redirected it to public/index.html</p>
+              
+              <h3>The "forever" printer</h3>
+              <p>One of the project goals was to show the cumulative impact of PFAS consumption using a never-ending printer. This printer's 
+                receipts represented the constant purchase of goods with PFAS. Since this printer did not need to respond to an input, hard coding an Arduino UNO
+                to output receipts worked well. 
+              </p>
+              <p>INSERT CODE FOR UNO AND IMAGES</p>
+              <!-- <button type="button" class="collapsible">main.cpp</button>
+                <div class="content">
+               <pre>
+               <code class="language-c">
+              </code>
+            </pre>
+              </p>
+              </div> -->
+    
+
+
+               <br>
+               <br>
+              <br>
+              <br>
+              <br>
+          </div>
+
+   <!-- End Portfolio Details Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <div id="footer" class="text-center">
+    <div class="container">
+  
+
+    </div>
+  </div><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
