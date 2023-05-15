@@ -82,6 +82,58 @@
             <h1>Final Project</h1>
             <br>
             <br>
+             <!-- Adding Carousel here -->
+              <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="assets/img/portfolio/final-project/hero/printer.jpg" class="d-block w-100 carousel-image" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="assets/img/portfolio/final-project/hero/ar.jpg" class="d-block w-100 carousel-image" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="assets/img/portfolio/final-project/hero/quiz.jpg" class="carousel-image" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="assets/img/portfolio/final-project/hero/organ.jpg" class="carousel-image" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="assets/img/portfolio/final-project/hero/juice.jpg" class="d-block w-100 carousel-image" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+              <!-- Carousel ends here -->
+              <br>
+              <br>
+              <br>
+              <!-- video -->
+              <h3>Video Overview</h3>
+              <br>
+              <br>
+              <video width="1050" controls>
+                <source src="assets/img/portfolio/final-project/ps70.mp4" type="video/mp4">
+              </video>
+          
+            <br>
+            <br>
+            <br>
+            <br>
                <h1>Process</h1>
                <p>
                 I built upon the molding and casting week's project so I will not repeat that process here. Reference back to <a href="https://alexandraweiner.github.io/PS70/milling-molding-casting.html">week 8</a> for the organ component of the project with some additonal learnings!
@@ -252,9 +304,9 @@
               </p>
                <p>Update the <a href="https://github.com/AlexandraWeiner/receipts-project/blob/main/src/main.cpp">main.cpp</a>. It will now communicate with the firebase to update the values once the below files are in place.</p>
                <p>Add desired styling to <a href="https://github.com/AlexandraWeiner/receipts-project/blob/main/public/styles.css">styles.css </a></p>
-               <p>Make a survey page. When a user clicks true there should be an increase of 100 on the store credit. If they click false the money owed will increase by 100.
-                When they click the "print receipt" button at the bottom of the page, the firebase database should update with their moneyOwed and storeCredit values shown on the right panel of this screen. The printer should also print a receipt with that user's Money Owed and Store Credit."
-               </p>
+               <p>Make a <a href="https://github.com/AlexandraWeiner/receipts-project/blob/main/public/index.html"
+                >survey page </a>. When a user clicks true there should be an increase of 100 on the store credit. If they click false the money owed will increase by 100.
+                When they click the "print receipt" button at the bottom of the page, the firebase database should update with their moneyOwed and storeCredit values shown on the right panel of this screen. The printer should also print a receipt with that user's Money Owed and Store Credit."              </p>
                <img src="assets/img/portfolio/final-project/survey.png" alt="survey page">
                <p>To make for a more realistic checkout experience, create a <a href="https://github.com/AlexandraWeiner/receipts-project/blob/main/public/test2.html">welcome html page </a>
                 to start the checkout process. This button on this page will take users to the survey.</p>
@@ -266,14 +318,168 @@
                 receipts represented the constant purchase of goods with PFAS. Since this printer did not need to respond to an input, coding an Arduino UNO
                 to output receipts consistently worked well. 
               </p>
-              <p>INSERT CODE FOR UNO AND IMAGES</p>
-              <h3>Making the Forever Juice Label</h3>
+              <p>INSERT IMAGES</p>
+               <button type="button" class="collapsible">main.cpp</button>
+                <div class="content">
+               <pre>
+               <code class="language-c">
+                /*------------------------------------------------------------------------
+                Based on sketch for Adafruit Thermal Printer library for Arduino.
+                
+              #include "Adafruit_Thermal.h"
+              #include "adalogo.h"
+              #include "adaqrcode.h"
+
+              #include "SoftwareSerial.h"
+              #define TX_PIN 6 // Arduino transmit  YELLOW WIRE  labeled RX on printer
+              #define RX_PIN 5 // Arduino receive   GREEN WIRE   labeled TX on printer
+
+              SoftwareSerial mySerial(RX_PIN, TX_PIN); // Declare SoftwareSerial obj first
+              Adafruit_Thermal printer(&mySerial);     // Pass addr to printer constructor
+              // Then see setup() function regarding serial & printer begin() calls.
+
+              // Here's the syntax for hardware serial (e.g. Arduino Due) --------------
+              // Un-comment the following line if using hardware serial:
+
+              //Adafruit_Thermal printer(&Serial1);      // Or Serial2, Serial3, etc.
+
+              // -----------------------------------------------------------------------
+
+              void setup() {
+
+                pinMode(7, OUTPUT); digitalWrite(7, LOW);
+
+                mySerial.begin(19200);  // Initialize SoftwareSerial
+                //Serial1.begin(19200); // Use this instead if using hardware serial
+                printer.begin();        // Init printer (same regardless of serial type)
+
+
+              }
+
+              void loop() {
+
+                // clothes receipt
+
+                printer.doubleHeightOn();
+                printer.println(F("Forever Mart"));
+                printer.doubleHeightOff();
+                printer.println("How long is forever?");
+                printer.feed(1);
+                delay(3000L);         // Sleep for 3 seconds
+
+              
+                printer.setFont('B');
+                printer.println("Date: 2023-04-28     Time: FOREVER");
+                delay(3000L);         // Sleep for 3 seconds
+                printer.println("Cashier: PFAS producing brands");
+                printer.println("Customer: Those who purchase PFAS containing clothes");
+
+
+                printer.setFont('A');
+                printer.println("Item: Waterproof clothing");
+
+                //barcode 
+                printer.printBarcode("FOREVER", CODE39);
+                printer.setBarcodeHeight(100);
+                printer.printBarcode("123456789123", UPC_A);
+                printer.feed(2);
+                printer.println("PFAS (Per- and polyfluoroalkyl substances) are a group of man-made chemicals that can have harmful effects on human health and the environment.");
+                printer.feed(1);
+                delay(3000L);         // Sleep for 3 seconds
+                printer.println("Thank you for visiting. Don't forget to shop PFAS-free!");
+                printer.feed(2);
+              
+                
+
+                printer.sleep();      // Tell printer to sleep
+                delay(3000L);         // Sleep for 3 seconds
+                printer.wake();       // MUST wake() before printing again, even if reset
+
+                // makeup 
+                  printer.doubleHeightOn();
+                printer.println(F("Forever Mart"));
+                printer.doubleHeightOff();
+                printer.println("How long is forever?");
+                printer.feed(1);
+                delay(3000L);         // Sleep for 3 seconds
+
+              
+                printer.setFont('B');
+                printer.println("Date: 2023-04-28     Time: FOREVER");
+                delay(3000L);         // Sleep for 3 seconds
+                printer.println("Cashier: PFAS producing brands");
+                printer.println("Customer: Those who purchase PFAS containing makeup");
+
+
+                printer.setFont('A');
+                printer.println("Item: Waterproof mascara");
+
+
+                // Barcode examples:
+                // CODE39 is the most common alphanumeric barcode:
+                printer.printBarcode("ADAFRUT", CODE39);
+                printer.setBarcodeHeight(100);
+                // Print UPC line on product barcodes:
+                printer.printBarcode("123456789123", UPC_A);
+                printer.feed(2);
+                printer.println("PFAS are in waterproof makeup, but you can shop PFAS free at Axiology (Axiology is also zero waste). BH Cosmetics, Burts Bees, Credo, cocokind, Fenty Beauty, Follain Florence by Mills, HandM, Kiko Milano, Lashfood, Mad Hippie ,Megababe, Pacifica , Physicians Formula, PYT Beauty, The Ordinary. source: greenmatters");
+                printer.feed(1);
+                delay(3000L);         // Sleep for 3 seconds
+                printer.println("Thank you for visiting. Don't forget to shop PFAS-free!");
+                printer.feed(2);
+                
+
+                
+
+                printer.sleep();      // Tell printer to sleep
+                delay(3000L);         // Sleep for 3 seconds
+                printer.wake();       // MUST wake() before printing again, even if reset
+                printer.setDefault(); // Restore printer to defaults
+              }
+
+              </code>
+              </pre>
+                </p>
+                </div>
+              <br>
+              <br>
+              <br>
+              <h3>The Receipt Box</h3>
+              <br>
+              <br>
+              <img src = "assets/img/portfolio/final-project/receiptbox.jpg" alt="laser cut file for box"/>
+              <p>The receipt box used 1/4 inch white acrylic and was laser cut using the below svg. </p>
+              <img src = "assets/img/portfolio/final-project/box.svg" alt="receipt box"/>
+              <p>The box was assembled using acrylic glue, clamps, and magnets for the back panel to come on and off easily to access the battery
+                and electronics.
+              </p>
+              <img src = "assets/img/portfolio/final-project/box-assembly.jpg" alt="receipt box"/>
+              <p>I tested a few designs for the vinyl cut sticker, but the vinyl cutter seemed to have trouble
+                with the smaller letters so I went with the second design.
+              </p>
+            
+              <!-- Image Grid starts here -->
+            <div class="row">
+              <div class="col-6">
+                <div class="image-container-portrait" style="background-image: url('assets/img/portfolio/final-project/vinyl-test.jpg');"></div>
+              </div>
+              <div class="col-6">
+                <div class="image-container-portrait" style="background-image: url('assets/img/portfolio/final-project/vinyl-final.jpg');"></div>
+              </div>
+            </div>
+            <!-- Image Grid ends here -->
+            <br>
+            <br>
+            <br>
+
+              <h3>The Forever Juice Label</h3>
               <p>The final Forever Juice label was simply printed on to adhesive sticker paper, but there was a good lesson learnt along the way. The first attempt
                 was on a heat transfer machine. The process was fairly simple - print a reverse image, heat stamp it on to the adhesive, scrape the adhesive. As you can see below, the 
                 sticker had a black background and vibrant colors. After several tests, it was clear that the heat transfer could not absorb enough pigment for a fully black background.
                 Instead, it was more of a grey. This was a simple insight, but given that it is a new machine at the SEC, it will be helpful for future prints. 
               </p>
-              <h3>add images from juice folder.. maybe carousel</h3>
+      
+
               <!-- <button type="button" class="collapsible">main.cpp</button>
                 <div class="content">
                <pre>
@@ -282,7 +488,24 @@
             </pre>
               </p>
               </div> -->
-    
+            <!-- Image Grid starts here -->
+            <div class="row">
+              <div class="col-6">
+                <div class="image-container" style="background-image: url('assets/img/portfolio/final-project/juice/IMG_1888.jpg');"></div>
+              </div>
+              <div class="col-6">
+                <div class="image-container" style="background-image: url('assets/img/portfolio/final-project/juice/IMG_1890.jpg');"></div>
+              </div>
+              <div class="col-6">
+                <div class="image-container" style="background-image: url('assets/img/portfolio/final-project/juice/IMG_1892.jpg');"></div>
+              </div>
+              <div class="col-6">
+                <div class="image-container" style="background-image: url('assets/img/portfolio/final-project/juice/IMG_1893.jpg');"></div>
+              </div>
+            </div>
+            <!-- Image Grid ends here -->
+
+
 
 
                <br>
