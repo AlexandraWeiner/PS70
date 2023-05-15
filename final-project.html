@@ -76,12 +76,11 @@
             <div class="portfolio-description">
               <h1>Project Background</h1>
               <p>
-                My final project is a multiple elements of an installation to raise awareness and reduce harm from PFAS, also known as Forever Chemicals. Since I wanted to both improve my coding skills and practice 
+                My final project is multiple elements of an installation to raise awareness and reduce harm from PFAS, also known as Forever Chemicals. Since I wanted to both improve my coding skills and practice 
                 the digital fabrication techniques I learned in class, I opted for an emphasis on coding the receipt printer and website along with a few other techniques for building the receipt container and organ.
               </p>
             <h1>Final Project</h1>
-            <br>
-            <br>
+            <p>Slideshow of the exhibit</p>
              <!-- Adding Carousel here -->
               <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -123,7 +122,7 @@
               <br>
               <br>
               <!-- video -->
-              <h3>Video Overview</h3>
+              <p>Video Overview</p>
               <br>
               <br>
               <video width="1050" controls>
@@ -136,7 +135,7 @@
             <br>
                <h1>Process</h1>
                <p>
-                I built upon the molding and casting week's project so I added to that process page for that portion of the work. Reference back to <a href="https://alexandraweiner.github.io/PS70/milling-molding-casting.html">week 8</a> for the organ component of the project with some additonal learnings!
+                I built upon the molding and casting week's project so I added to that process page. Reference back to <a href="https://alexandraweiner.github.io/PS70/milling-molding-casting.html">week 8</a> for the organ component of the project with some additonal learnings!
                </p>
                <h3>Materials</h3>
                <p>
@@ -172,7 +171,7 @@
                 a printer creates a receipt based on a survey completed by each participant. 
                 The receipt prints the results of their survey.
                 I selected the esp32-mini-1 because of the wifi capability and steered clear of the esp32-s2, 
-                which i used for previous projects, because it tended to be unreliable.
+                which I used for previous projects, because it tended to be unreliable and less supported by community forums.
                </p>
                <p>
                 I followed <a href="https://learn.adafruit.com/mini-thermal-receipt-printer/microcontroller">this tutorial</a> to test a sample print by 
@@ -185,8 +184,20 @@
                 and used the sample code for the esp-32 with some edits below. There was not much documentation on these changes, so it took quite a bit of testing 
                 to finally make it work.                
                </p>
-               <h3>TODO add the electronics images</h3>
-
+               <p>The set up for the electronics were pretty simple so I won't spend much time. I used a 5V battery on each so that the receipt boxes could be completely free standing on the checkout counter.</p>
+                 <!-- Image Grid starts here -->
+                <div class="row">
+                  <div class="col-6">
+                    <div class="image-container-portrait" style="background-image: url('assets/img/portfolio/final-project/electronics/IMG_2009\ 4.JPG');"></div>
+                  </div>
+                  <div class="col-6">
+                    <div class="image-container-portrait" style="background-image: url('assets/img/portfolio/final-project/electronics/IMG_2078.jpg');"></div>
+                  </div>
+                </div>
+              <!-- Image Grid ends here -->
+              <br>
+              <br>
+              <br>
                <button type="button" class="collapsible">code</button>
                 <div class="content">
                   <p>
@@ -300,13 +311,13 @@
                <p>Update the firebase to contain the relevant fields</p>
                <img src="assets/img/portfolio/final-project/firebase.png" alt="database with money owed, has been printed, and money spent variables">
                <p>Update or create the following files</p>
-               <p>Update the <a href=" https://github.com/AlexandraWeiner/receipts-project/blob/main/public/script.js">script.js</a>. This will enable firebase communication necessary below and calculations for the survey page.</p>
+               <p><a href=" https://github.com/AlexandraWeiner/receipts-project/blob/main/public/script.js">script.js</a>. This will enable firebase communication necessary below and calculations for the survey page.</p>
               </p>
-               <p>Update the <a href="https://github.com/AlexandraWeiner/receipts-project/blob/main/src/main.cpp">main.cpp</a>. It will now communicate with the firebase to update the values once the below files are in place.</p>
-               <p>Add desired styling to <a href="https://github.com/AlexandraWeiner/receipts-project/blob/main/public/styles.css">styles.css </a></p>
-               <p>Make a <a href="https://github.com/AlexandraWeiner/receipts-project/blob/main/public/index.html"
-                >survey page </a>. When a user clicks true there should be an increase of 100 on the store credit. If they click false the money owed will increase by 100.
-                When they click the "print receipt" button at the bottom of the page, the firebase database should update with their moneyOwed and storeCredit values shown on the right panel of this screen. The printer should also print a receipt with that user's Money Owed and Store Credit."              </p>
+               <p><a href="https://github.com/AlexandraWeiner/receipts-project/blob/main/src/main.cpp">main.cpp</a>. It will now communicate with the firebase to update the values once the below files are in place.</p>
+               <p><a href="https://github.com/AlexandraWeiner/receipts-project/blob/main/public/styles.css">styles.css </a></p>
+               <p><a href="https://github.com/AlexandraWeiner/receipts-project/blob/main/public/index.html"
+                >survey html</a>. When a user clicks true there should be an increase of 100 on the store credit. If they click false the money owed will increase by 100.
+                When they click the "print receipt" button at the bottom of the page, the firebase database should update with their moneyOwed and storeCredit values shown on the right panel of this screen. The printer should also print a receipt with that user's Money Owed and Store Credit.              </p>
                <img src="assets/img/portfolio/final-project/survey.png" alt="survey page">
                <p>To make for a more realistic checkout experience, create a <a href="https://github.com/AlexandraWeiner/receipts-project/blob/main/public/test2.html">welcome html page </a>
                 to start the checkout process. This button on this page will take users to the survey.</p>
@@ -318,8 +329,12 @@
                 receipts represented the constant purchase of goods with PFAS. Since this printer did not need to respond to an input, coding an Arduino UNO
                 to output receipts consistently worked well. 
               </p>
-              <p>INSERT IMAGES</p>
-               <button type="button" class="collapsible">main.cpp</button>
+              <img src="assets/img/portfolio/final-project/electronics/IMG_1891.jpg" alt="printer with long receipt">
+              <br>
+              <br>
+              <br>
+              <div>
+              <button type="button" class="collapsible">code</button>
                 <div class="content">
                <pre>
                <code class="language-c">
@@ -441,6 +456,7 @@
               </pre>
                 </p>
                 </div>
+              </div> 
               <br>
               <br>
               <br>
