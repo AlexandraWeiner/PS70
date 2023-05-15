@@ -101,6 +101,15 @@
                 <li>Silicone dyes</li>
                 <li>Tweezers</li>
                 <li>Stirring stick</li>
+              Pump
+              <ul>
+                <li>Mini submersible 5V pump</li>
+                <li>Wiring</li>
+                <li>Soldering station</li>
+                <li>Breadboard</li>
+                <li>Motion sensor HC-SR04</li>
+                <li>Container for liquid</li>
+                <li>Liquid (fake blood and water)
               </ul>
             </p>
             <br>
@@ -144,9 +153,97 @@
             </p>
             <img src="assets/img/portfolio/milling-molding-casting/organ-painted.jpg" alt="mold contraption">
             <p>
-              The next steps are to make the organ look more realistic and to test the pump when the fake blood arrives!
               <img class="img-wide" src="assets/img/portfolio/milling-molding-casting/final.png" alt="organ on box">
             </p>
+            <h3>Motion sensing</h3>
+            <br>
+            <br>
+            In the original design, there was an infared sensor. The design was changed to a sonic sensor to allow for more interactivity. 
+            As viewers got closer, the blood oozing increased. The following code and wiring helped to accomplish this.
+            <br>
+            <br>
+            <h3>Testing with water</h3>
+            <p>The water test was effective but only after I primed the tubing with water. In the future, I would have less variation in the tubing sizes
+              to make it easier for the liquid to flow.
+            </p>
+            <br>
+            <br>
+            <img src="assets/img/portfolio/milling-molding-casting/diagram-mmc.png" alt="diagram of water, pump, sensor">
+            <br>
+            <br>
+            <img src="assets/img/portfolio/milling-molding-casting/water-test.jpg" alt="water, pump, sensor">
+            <br>
+            <br>
+            <video width="1050" controls>
+              <source src="assets/img/portfolio/milling-molding-casting/organ.mov" type="video/mp4">
+            </video>
+            <br>
+            <br>
+            <div>
+              <button type="button" class="collapsible">code</button>
+                <div class="content">
+               <pre>
+               <code class="language-c">
+                // defines pins numbers
+                const int trigPin = 9;
+                const int echoPin = 10;
+                const int motorPin = 11;
+                const int ledPin = 13;
+
+                // defines variables
+                long duration;
+                int distance;
+
+                void setup() {
+                  pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
+                  pinMode(echoPin, INPUT); // Sets the echoPin as an Input
+                  pinMode(motorPin, OUTPUT);
+                  pinMode(ledPin, OUTPUT);
+                  Serial.begin(9600); // Starts the serial communication
+                }
+
+                void loop() {
+                  // Clears the trigPin
+                  digitalWrite(trigPin, LOW);
+
+                  // Sets the trigPin on HIGH state for 10 micro seconds
+                  digitalWrite(trigPin, HIGH);
+                  digitalWrite(trigPin, LOW);
+
+                  // Reads the echoPin, returns the sound wave travel time in microseconds
+                  duration = pulseIn(echoPin, HIGH);
+
+                  // Calculating the distance
+                  distance = duration * 0.034 / 2;
+
+                  // Control motor speed based on distance
+                  if (distance <= 30) {
+                    // 1 foot or closer
+                    analogWrite(motorPin, 255); // 100% speed
+                    digitalWrite(ledPin, HIGH);
+                  } else if (distance <= 91) {
+                    // Between 1 and 3 feet
+                    analogWrite(motorPin, 255 * 0.75); // 75% speed
+                    digitalWrite(ledPin, HIGH);
+                  } else if (distance <= 121) {
+                    // Between 3 and 4 feet
+                    analogWrite(motorPin, 0); // 0% speed (off)
+                    digitalWrite(ledPin, LOW);
+                  } else {
+                    // More than 4 feet away
+                    analogWrite(motorPin, 0); // 0% speed (off)
+                    digitalWrite(ledPin, LOW);
+                  }
+
+                  // Prints the distance on the Serial Monitor
+                  Serial.print("Distance: ");
+                  Serial.println(distance);
+                }
+
+              </code>
+            </pre>
+              </p>
+              </div>
             <h1>CNC Process</h1>
             <p>
               I then used the ShopBot to CNC mill the name of my street. The file is a dfx from adobe illustrator using bauhaus font.
@@ -163,7 +260,7 @@
             <br>
             <br>
           </div>
-
+        </div>
    <!-- End Portfolio Details Section -->
 
   </main><!-- End #main -->
