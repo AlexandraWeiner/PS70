@@ -999,6 +999,21 @@ p {
   width: 100%;
 }
 
+.image-container {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  padding-bottom: 75%; /* less than 100% for landscape aspect ratio */
+}
+
+.image-container-portrait {
+  background-size: cover;
+  background-position: center;
+  width: 75%;
+  padding-bottom: 100%; /* less than 100% for landscape aspect ratio */
+}
+
+
 .journal-txt h4 a {
   display: block;
   font-size: 19px;
@@ -1213,6 +1228,11 @@ blockquote {
   }
 
   /* portfolio */
+  .carousel-image {
+    height: 100px;  /* change to your desired height */
+    width: auto;  /* maintain aspect ratio */
+  }
+
   #portfolio .portfolio-list .nav li {
     float: none;
     margin: 20px;
