@@ -71,78 +71,179 @@
             <div class="portfolio-description">
               <h1>Project Background</h1>
               <p>
-                Week 6 was about capacitive sensors. I looked at 3D positioning to prepare for my final project and also created a water level sensor.  
+                Week 7 was output device week. I wanted to learn about air monitoring so I chose the led display and air quality monitor.
               </p>
-            <h1>3D Positioning Process</h1>
+            <h1>Process</h1>
             <p>
              <h3>Materials</h3> 
              <br>
              <br>
               <ul>
                 <li>Arduino UNO</li>
-                <li>MPU6050 Accelerometer and Gyroscope sensor</li>
+                <li>MQ Sensor for air quality</li>
                 <li>Breadboard</li>
                 <li>Wires</li>
                 <li>Soldering tools</li>
+                <li>10k potentiometer</li>
+                <li>16x2 Liquid Crystal Display</li>
               </ul>
             </p>
             <br>
             <br>
-            <h3>Testing the gyroscope and accelerometer</h3>
+            <h3>Testing the LCD</h3>
             <p>
-              I wired the MPU6050 to the Arduino UNO. 
+              I started by testing the LCD. I wired the the LCD as shown below and printed "hello world."
             </p>
-            <img src="assets/img/portfolio/input devices/inputdiagram.png" alt="diagram uno and mpu6050">
-            <p>
-              And used the code from <a href=" https://howtomechatronics.com/tutorials/arduino/arduino-and-mpu6050-accelerometer-and-gyroscope-tutorial/">this tutorial</a>
-              to read from the sensor.
-            </p>
-            <img src="assets/img/portfolio/input devices/ezgif.com-video-to-gif (7).gif" alt="gif moving the mpu6050">
-            <img src="assets/img/portfolio/input devices/ezgif.com-video-to-gif (8).gif" alt="gif moving the mpu6050">
-            <img src="assets/img/portfolio/input devices/ezgif.com-video-to-gif (9).gif" alt="gif moving the mpu6050">
-             <p>
-              I then tested different movements. For example, when laying flat on a table the
-              z-axis of the accelerometer should equal the acceleration of gravity (~9.8 m/s^2). As
-              we can see below, it is fairly close, but not exact. This would need to be fixed for more precise
-              applications such as my potential final project. 
+            <div>
+            <img src="assets/img/portfolio/output/test.JPG" alt="lcd with hello world">
+          </div>
+            <br>
+            <br>
+            <br>
+            <img src="assets/img/portfolio/output/diagram.png" alt="diagram of uno and lcd">
+            <div>
+            <button type="button" class="collapsible">code</button>
+                <div class="content">
+               <pre>
+               <code class="language-c">
+                /*
+                  LiquidCrystal Library - Hello World
+
+                Demonstrates the use a 16x2 LCD display.  The LiquidCrystal
+                library works with all LCD displays that are compatible with the
+                Hitachi HD44780 driver. There are many of them out there, and you
+                can usually tell them by the 16-pin interface.
+
+                This sketch prints "Hello World!" to the LCD
+                and shows the time.
+
+                  The circuit:
+                * LCD RS pin to digital pin 12
+                * LCD Enable pin to digital pin 11
+                * LCD D4 pin to digital pin 5
+                * LCD D5 pin to digital pin 4
+                * LCD D6 pin to digital pin 3
+                * LCD D7 pin to digital pin 2
+                * LCD R/W pin to ground
+                * LCD VSS pin to ground
+                * LCD VCC pin to 5V
+                * 10K resistor:
+                * ends to +5V and ground
+                * wiper to LCD VO pin (pin 3)
+
+                Library originally added 18 Apr 2008
+                by David A. Mellis
+                library modified 5 Jul 2009
+                by Limor Fried (http://www.ladyada.net)
+                example added 9 Jul 2009
+                by Tom Igoe
+                modified 22 Nov 2010
+                by Tom Igoe
+                modified 7 Nov 2016
+                by Arturo Guadalupi
+
+                This example code is in the public domain.
+
+                https://docs.arduino.cc/learn/electronics/lcd-displays
+
+                */
+
+                // include the library code:
+                #include <LiquidCrystal.h>
+
+                // initialize the library by associating any needed LCD interface pin
+                // with the arduino pin number it is connected to
+                const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+                LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
+                void setup() {
+                  // set up the LCD's number of columns and rows:
+                  lcd.begin(16, 2);
+                  // Print a message to the LCD.
+                  lcd.print("hello, world!");
+                }
+
+                void loop() {
+                  // set the cursor to column 0, line 1
+                  // (note: line 1 is the second row, since counting begins with 0):
+                  lcd.setCursor(0, 1);
+                  // print the number of seconds since reset:
+                  lcd.print(millis() / 1000);
+                }
+              </code>
+            </pre>
               </p>
-              <img src="assets/img/portfolio/input devices/accelz.png" alt="graph">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <h1>Water level sensor process</h1>
-            <br>
-            <br>
-            <h3>Materials</h3>
-            <br>
-            <br>
-            <ul>
-              <li>Copper tape</li>
-              <li>Plastic cup with measuring marks</li>
-              <li>Breadboard</li>
-              <li>Alligator clips</li>
-              <li>Wires</li>
-              <li>2x10MOhm resistor</li>
-            </ul>
-            <p>
-              I tried to build the cup sensor as outlined in the class instructions page.
+              </div>
+            </div>
+            <h3>Testing the sensor</h3>
+            <p>I then added the sensor and updated the code to read the air quality measure. The changes to the wiring were pretty simple,
+              vcc to the positive lane, gnd to negative lane, and A0 to the A0 pin. 
             </p>
-            <img src="assets/img/portfolio/input devices/cup1.jpg" alt="capacitive sensor cup">
-            <p>
-              I used <a href="https://www.tinkercad.com/things/jxwiFJQbHLA-magnificent-elzing-bombul/editel?sharecode=AyomfXdsAnZ-xy1cm0o4OCMm6P6AFc0qZebtLURTGvs">this code</a>, but was getting a ton of variation on the y axis. 
+                 <button type="button" class="collapsible">code</button>
+                <div class="content">
+               <pre>
+               <code class="language-c">
+                // Include LCD library
+                #include <LiquidCrystal.h>
+
+                // Initialize the library with the numbers of the interface pins
+                LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+                #define MQ2_PIN A0 // Define the pin where the MQ-2 is connected
+
+                unsigned long previousMillis = 0; // Will store the last time the LCD was updated
+                const long interval = 1000; // Interval at which to update the LCD (1 second)
+
+                void setup() {
+                  // Set up the LCD's number of columns and rows: 
+                  lcd.begin(16, 2);
+                  // Print a message to the LCD.
+                  lcd.print("Gas Sensor");
+                  delay(2000);
+                  lcd.clear();
+                }
+
+                void loop() {
+                  unsigned long currentMillis = millis();
+                  if (currentMillis - previousMillis >= interval) {
+                    previousMillis = currentMillis;
+
+                    int mq2_value = analogRead(MQ2_PIN); // Read the MQ-2 value
+                    
+                    // Set the cursor to column 0, line 0
+                    // (note: line 0 is the first row, since counting begins with 0):
+                    lcd.setCursor(0, 0);
+                    // Print a message to the first line of LCD
+                    lcd.print("Gas Value: ");
+                    
+                    // Set the cursor to column 0, line 1
+                    // (note: line 1 is the second row, since counting begins with 0):
+                    lcd.setCursor(0, 1);
+                    // Print the MQ-2 gas sensor value to the second line of LCD
+                    lcd.print(mq2_value);
+                    
+                    lcd.clear(); // Clear the LCD for the next reading
+                  }
+                }
+
+              </code>
+            </pre>
+              </p>
+              </div>
+              </div>
             </p>
-            <img src="assets/img/portfolio/input devices/graph1.png" alt="graph">
-            <p>
-              I tried this set up, which removed the board and directly connected to the cup. Excuse the poor photography, the copper was better affixed when I actually tested the water level.
+            <p>As you can see, when the smoke comes near the sensor, it rises about 100ppm.</p>
+            <video height="500" controls>
+              <source src="assets/img/portfolio/output/sensor.mov" type="video/mp4">
+            </video>
+            <p>I did use the oscilloscope with this set up, but I am not sure the results were correct. The lab class and other
+              office hours were having some issues. Nevertheless, I attached the ground probe to my ground pin on the LCD and the power to the 
+              data pin for the sensor. The reading produced a wave that did not mirron the symmetrical wave in the tutorial videos, but did appear to be consistent. 
+              There also was not much movement, but this is consistent with the air quality staying the same throughout the test. 
             </p>
-            <img src="assets/img/portfolio/input devices/cup2.jpg" alt="capacitive sensor cup try 2">
-            <p>
-              There was a relationship between the water level and the reading. To get accurate calibration next time, I would solder the set up, shorten the wires, and try both methods of
-              capacitive sensing. 
-            </p>
+            <video height="500" controls>
+              <source src="assets/img/portfolio/output/oscc.mov" type="video/mp4">
+            </video>
             <br>
             <br>
             <br>
